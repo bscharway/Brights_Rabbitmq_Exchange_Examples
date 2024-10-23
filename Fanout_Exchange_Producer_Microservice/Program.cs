@@ -7,7 +7,7 @@ namespace Fanout_Exchange_Producer_Microservice
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
@@ -16,9 +16,9 @@ namespace Fanout_Exchange_Producer_Microservice
                 string queue3 = "queue_for_consumer_3";
 
                 channel.ExchangeDeclare(exchange: "logs", type: ExchangeType.Fanout);
-                channel.QueueDeclare(queue1, durable: true, exclusive: false, autoDelete: false, arguments: null);
-                channel.QueueDeclare(queue2, durable: true, exclusive: false, autoDelete: false, arguments: null);
-                channel.QueueDeclare(queue3, durable: true, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: queue1, durable: true, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: queue2, durable: true, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: queue3, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
                 channel.QueueBind(queue1, exchange: "logs", routingKey: "");
                 channel.QueueBind(queue2, exchange: "logs", routingKey: "");
