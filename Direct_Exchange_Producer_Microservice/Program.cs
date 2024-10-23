@@ -12,11 +12,11 @@ namespace Direct_Exchange_Producer_Microservice
             using (var channel = connection.CreateModel())
             {
                 channel.ExchangeDeclare(exchange: "direct_logs", type: ExchangeType.Direct);
-                int num = 10;
+                int num = 1;
                 string severity = "error";
                 string message = $"Dette er en fejlmeddelelse nr {num}!! Bright kan ikke finde ud af at kode.";
 
-                for (int i = 0; i < num; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     var body = Encoding.UTF8.GetBytes(message);
 
@@ -25,6 +25,7 @@ namespace Direct_Exchange_Producer_Microservice
                                          basicProperties: null,
                                          body: body);
                     Console.WriteLine("[x] Sent '{0}':'{1}'", severity, message);
+                    num++;
                 }
             }
         }

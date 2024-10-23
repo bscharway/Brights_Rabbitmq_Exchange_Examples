@@ -24,14 +24,17 @@ namespace Fanout_Exchange_Producer_Microservice
                 channel.QueueBind(queue2, exchange: "logs", routingKey: "");
                 channel.QueueBind(queue3, exchange: "logs", routingKey: "");
 
-                string message = "Broadcast besked";
-                var body = Encoding.UTF8.GetBytes(message);
+                for (int i = 1; i < 11; i++)
+                {
+                    string message = $"Broadcast besked nr {i} fra de vilde kaniner. skud ud gnags";
+                    var body = Encoding.UTF8.GetBytes(message);
 
-                channel.BasicPublish(exchange: "logs",
-                                     routingKey: "",
-                                     basicProperties: null,
-                                     body: body);
-                Console.WriteLine("[x] Sent {0}", message);
+                    channel.BasicPublish(exchange: "logs",
+                                         routingKey: "",
+                                         basicProperties: null,
+                                         body: body);
+                    Console.WriteLine("[x] Sent {0}", message);
+                }
             }
         }
     }

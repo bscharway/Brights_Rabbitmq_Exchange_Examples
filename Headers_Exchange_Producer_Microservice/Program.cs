@@ -17,14 +17,18 @@ namespace Headers_Exchange_Producer_Microservice
                 var properties = channel.CreateBasicProperties();
                 properties.Headers = headers;
 
-                string message = "Dette er en rapport i PDF format.";
-                var body = Encoding.UTF8.GetBytes(message);
+                for (int i = 1; i < 11; i++)
+                {
 
-                channel.BasicPublish(exchange: "headers_logs",
-                                     routingKey: "",
-                                     basicProperties: properties,
-                                     body: body);
-                Console.WriteLine("[x] Sent message with headers");
+                    string message = $"Dette er en rapport nr {i} i PDF format som viser hvor mange gang de vilde kaniner med gnags er blevet spillet i de sidste 10 år.";
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "headers_logs",
+                                         routingKey: "",
+                                         basicProperties: properties,
+                                         body: body);
+                    Console.WriteLine("[x] Sent message with headers");
+                }
             }
 
         }
