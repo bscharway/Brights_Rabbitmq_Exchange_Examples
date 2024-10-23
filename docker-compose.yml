@@ -16,60 +16,100 @@ services:
     build:
       context: .
       dockerfile: Direct_Exchange_Consumer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   direct_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}directexchangeproducermicroservice
     build:
       context: .
       dockerfile: Direct_Exchange_Producer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   fanout_exchange_consumer1_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeconsumer1microservice
     build:
       context: .
       dockerfile: Fanout_Exchange_Consumer1_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   fanout_exchange_consumer2_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeconsumer2microservice
     build:
       context: .
       dockerfile: Fanout_Exchange_Consumer2_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   fanout_exchange_consumer3_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeconsumer3microservice
     build:
       context: .
       dockerfile: Fanout_Exchange_Consumer3_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   fanout_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeproducermicroservice
     build:
       context: .
       dockerfile: Fanout_Exchange_Producer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   headers_exchange_consumer_microservice:
     image: ${DOCKER_REGISTRY-}headersexchangeconsumermicroservice
     build:
       context: .
       dockerfile: Headers_Exchange_Consumer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   headers_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}headersexchangeproducermicroservice
     build:
       context: .
       dockerfile: Headers_Exchange_Producer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   topic_exchange_consumer_microservice:
     image: ${DOCKER_REGISTRY-}topicexchangeconsumermicroservice
     build:
       context: .
       dockerfile: Topic_Exchange_Consumer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
   topic_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}topicexchangeproducermicroservice
     build:
       context: .
       dockerfile: Topic_Exchange_Producer_Microservice/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
 
 volumes:
   rabbitmq_data:
