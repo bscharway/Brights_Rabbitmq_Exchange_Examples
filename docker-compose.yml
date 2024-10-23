@@ -1,4 +1,28 @@
 services:
+  
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672" # RabbitMQ AMQP port
+      - "15672:15672" # RabbitMQ Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  direct_exchange_consumer_microservice:
+    image: ${DOCKER_REGISTRY-}directexchangeconsumermicroservice
+    build:
+      context: .
+      dockerfile: Direct_Exchange_Consumer_Microservice/Dockerfile
+
+  direct_exchange_producer_microservice:
+    image: ${DOCKER_REGISTRY-}directexchangeproducermicroservice
+    build:
+      context: .
+      dockerfile: Direct_Exchange_Producer_Microservice/Dockerfile
+
   fanout_exchange_consumer1_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeconsumer1microservice
     build:
@@ -11,13 +35,11 @@ services:
       context: .
       dockerfile: Fanout_Exchange_Consumer2_Microservice/Dockerfile
 
-
   fanout_exchange_consumer3_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeconsumer3microservice
     build:
       context: .
       dockerfile: Fanout_Exchange_Consumer3_Microservice/Dockerfile
-
 
   fanout_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}fanoutexchangeproducermicroservice
@@ -25,27 +47,11 @@ services:
       context: .
       dockerfile: Fanout_Exchange_Producer_Microservice/Dockerfile
 
-
-  direct_exchange_producer_microservice:
-    image: ${DOCKER_REGISTRY-}directexchangeproducermicroservice
-    build:
-      context: .
-      dockerfile: Direct_Exchange_Producer_Microservice/Dockerfile
-
-
-  direct_exchange_consumer_microservice:
-    image: ${DOCKER_REGISTRY-}directexchangeconsumermicroservice
-    build:
-      context: .
-      dockerfile: Direct_Exchange_Consumer_Microservice/Dockerfile
-
-
   headers_exchange_consumer_microservice:
     image: ${DOCKER_REGISTRY-}headersexchangeconsumermicroservice
     build:
       context: .
       dockerfile: Headers_Exchange_Consumer_Microservice/Dockerfile
-
 
   headers_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}headersexchangeproducermicroservice
@@ -53,31 +59,28 @@ services:
       context: .
       dockerfile: Headers_Exchange_Producer_Microservice/Dockerfile
 
-
   topic_exchange_consumer_microservice:
     image: ${DOCKER_REGISTRY-}topicexchangeconsumermicroservice
     build:
       context: .
       dockerfile: Topic_Exchange_Consumer_Microservice/Dockerfile
 
-
   topic_exchange_producer_microservice:
     image: ${DOCKER_REGISTRY-}topicexchangeproducermicroservice
     build:
       context: .
       dockerfile: Topic_Exchange_Producer_Microservice/Dockerfile
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - "5672:5672" # RabbitMQ AMQP port
-      - "15672:15672" # RabbitMQ Management UI port
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
 
 volumes:
   rabbitmq_data:
     driver: local
+
+
+
+
+
+
+
+
+
 
