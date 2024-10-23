@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Headers_Exchange_Producer_Microservice": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

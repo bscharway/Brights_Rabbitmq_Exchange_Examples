@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Direct_Exchange_Consumer_Microservice": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

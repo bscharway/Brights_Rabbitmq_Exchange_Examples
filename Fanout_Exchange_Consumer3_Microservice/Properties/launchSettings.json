@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Fanout_Exchange_Consumer3_Microservice": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

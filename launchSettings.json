@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "fanout_exchange_consumer1_microservice": "StartDebugging",
+        "fanout_exchange_consumer2_microservice": "StartDebugging",
+        "fanout_exchange_consumer3_microservice": "StartDebugging",
+        "fanout_exchange_producer_microservice": "StartDebugging",
+        "direct_exchange_producer_microservice": "StartDebugging",
+        "direct_exchange_consumer_microservice": "StartDebugging",
+        "headers_exchange_consumer_microservice": "StartDebugging",
+        "headers_exchange_producer_microservice": "StartDebugging",
+        "topic_exchange_consumer_microservice": "StartDebugging",
+        "topic_exchange_producer_microservice": "StartDebugging"
+      }
+    }
+  }
+}
